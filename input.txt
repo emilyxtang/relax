@@ -1,0 +1,23 @@
+student = {
+id, name, email, city
+1, 'alex', 'a@c', 'ottawa'
+2, 'john', 'j@c', 'ottawa'
+3, 'makaela', 'm@c', 'toronto'
+}
+
+takes = {
+sid, cid, mark
+1, 1, 9
+1, 2, 10
+1, 3, 8
+2, 1, 8
+}
+
+course = {
+id, title, hours
+1, 'math', 1
+2, 'physics', 1
+3, 'dbms', 1
+}
+
+(π name student) - (π name (student ⨝ id=sid takes))
