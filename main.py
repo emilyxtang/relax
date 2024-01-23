@@ -4,7 +4,7 @@ from relation import Relation
 OPERATORS = ['σ', 'π', '⨝', '∪', '∩', '-']
 RELATIONS_TITLE = 'RELATION(S)'
 QUERY_TITLE = 'QUERY'
-EXECUTE_QUERY_TITLE = 'EXECUTE QUERY'
+RESULT_TITLE = 'RESULT'
 
 query = ''
 relations = []
@@ -93,7 +93,7 @@ def print_query() -> None:
     print(query)
 
 def print_execute_query() -> None:
-    print_title(EXECUTE_QUERY_TITLE)
+    print_title(RESULT_TITLE)
     print(QueryExecutor(query, relations).get_result())
     print()
 

@@ -46,6 +46,12 @@ class Relation:
         """
         return list(set(self.get_columns()) & set(relation.get_columns()))
 
+    def get_name(self) -> str:
+        """
+        Returns the name of the Relation.
+        """
+        return self._name
+
     def set_name(self, name : str) -> None:
         """
         Sets the name of the Relation to the given name.
