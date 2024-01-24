@@ -40,12 +40,6 @@ class Relation:
             name = ' ' * width_table
         return name + '\n' + table
 
-    def _get_common_columns(self, relation : 'Relation') -> list[str]:
-        """
-        Returns the columns that the two relations have in common.
-        """
-        return list(set(self.get_columns()) & set(relation.get_columns()))
-
     def get_name(self) -> str:
         """
         Returns the name of the Relation.
@@ -71,27 +65,68 @@ class Relation:
         """
         return _init_relation_from_df(self._table.query(expression))
     
-    def projection(self, columns : list[str]):
+    def projection(self, columns : list[str]) -> 'Relation':
         """
         Returns a new Relation representing the projection operation using the
         given columns.
         """
         return _init_relation_from_df(self._table[columns])
 
-    # FIXME: can condense this
-    def inner_join(self, relation : 'Relation', left_on=None, right_on=None):
+    def inner_join(self, relation : 'Relation', left_on=None,
+        right_on=None) -> 'Relation':
         """
         Returns a new Relation representing the inner join operation.
 
-        If left_on and right_on are provided...
+        If left_on and right_on are not provided, the Relations will be joined
+        based on all the columns that the two Relations have in common.
+
+        Args:
+            left_on (str): A column in the current Relation to join on.
+            right_on (str): A column in the provided Relation to join on.
         """
-        if left_on is None and right_on is None:
-            df = pd.merge(self._table, relation._table,
-                on=self._get_common_columns(relation), how='inner')
-        else:
-            df = pd.merge(self._table, relation._table,
-                left_on=left_on, right_on=right_on, how='inner')
-        return _init_relation_from_df(df)
+        return self._join(relation, 'inner', left_on, right_on)
+
+    def left_outer_join(self, relation : 'Relation', left_on=None,
+        right_on=None) -> 'Relation':
+        """
+        Returns a new Relation representing the left outer join operation.
+
+        If left_on and right_on are not provided, the Relations will be joined
+        based on all the columns that the two Relations have in common.
+
+        Args:
+            left_on (str): A column in the current Relation to join on.
+            right_on (str): A column in the provided Relation to join on.
+        """
+        return self._join(relation, 'left', left_on, right_on)
+    
+    def right_outer_join(self, relation : 'Relation', left_on=None,
+        right_on=None) -> 'Relation':
+        """
+        Returns a new Relation representing the right outer join operation.
+
+        If left_on and right_on are not provided, the Relations will be joined
+        based on all the columns that the two Relations have in common.
+
+        Args:
+            left_on (str): A column in the current Relation to join on.
+            right_on (str): A column in the provided Relation to join on.
+        """
+        return self._join(relation, 'right', left_on, right_on)
+    
+    def full_outer_join(self, relation : 'Relation', left_on=None,
+        right_on=None) -> 'Relation':
+        """
+        Returns a new Relation representing the full outer join operation.
+
+        If left_on and right_on are not provided, the Relations will be joined
+        based on all the columns that the two Relations have in common.
+
+        Args:
+            left_on (str): A column in the current Relation to join on.
+            right_on (str): A column in the provided Relation to join on.
+        """
+        return self._join(relation, 'outer', left_on, right_on)
 
     def union(self, relation : 'Relation'):
         """
@@ -114,3 +149,23 @@ class Relation:
         return _init_relation_from_df(pd.merge(self._table, relation._table,
             how='outer', indicator=True).query('_merge == "left_only"') \
             .drop('_merge', axis=1))
+    
+    def _get_common_columns(self, relation : 'Relation') -> list[str]:
+        """
+        Returns the columns that the two relations have in common.
+        """
+        return list(set(self.get_columns()) & set(relation.get_columns()))
+    
+    def _join(self, relation : 'Relation', how : str, left_on,
+        right_on) -> 'Relation':
+        """
+        Returns a new Relation representing the specified type of join
+        operation.
+        """
+        if left_on is None and right_on is None:
+            df = pd.merge(self._table, relation._table, how=how,
+                on=self._get_common_columns(relation))
+        else:
+            df = pd.merge(self._table, relation._table, how=how,
+                left_on=left_on, right_on=right_on)
+        return _init_relation_from_df(df)
