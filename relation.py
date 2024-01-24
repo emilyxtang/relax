@@ -1,3 +1,7 @@
+"""
+A module to perform operations on relations.
+"""
+
 import pandas as pd
 from tabulate import tabulate
 
