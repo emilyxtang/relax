@@ -1,6 +1,8 @@
 from query_executor import QueryExecutor
 from relation import Relation
 
+INPUT_FILE_NAME = 'input.txt'
+
 OPERATORS = ['σ', 'π', '⨝', '∪', '∩', '-']
 RELATIONS_TITLE = 'RELATION(S)'
 QUERY_TITLE = 'QUERY'
@@ -32,7 +34,7 @@ def create_relation(relation : list[str]) -> Relation:
 
 def read_input_file() -> None:
     global query, relations
-    input = open('input.txt', 'r').readlines()
+    input = open(INPUT_FILE_NAME, 'r').readlines()
 
     relation = []
     is_relation = False
