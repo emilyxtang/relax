@@ -1,0 +1,15 @@
+employee = {
+id, name, email, dept
+1, 'alex', 'a@c', 'sales'
+2, 'john', 'j@c', 'finance'
+3, 'mo', 'm@c', 'hr'
+}
+
+department = {
+name, budget
+'finance', 20000
+'sales', 30000
+'it', 40000
+}
+
+employee ⟕ dept=name department

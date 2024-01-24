@@ -59,6 +59,24 @@ class QueryExecutor:
                     result = relation1.inner_join(relation2, columns[0], columns[1])
                 else:
                     result = relation1.inner_join(relation2)
+            elif '⟕' in query:
+                if len(query_split) == 4:
+                    columns = query_split[2].split('=')
+                    result = relation1.left_outer_join(relation2, columns[0], columns[1])
+                else:
+                    result = relation1.left_outer_join(relation2)
+            elif '⟖' in query:
+                if len(query_split) == 4:
+                    columns = query_split[2].split('=')
+                    result = relation1.right_outer_join(relation2, columns[0], columns[1])
+                else:
+                    result = relation1.right_outer_join(relation2)
+            elif '⟗' in query:
+                if len(query_split) == 4:
+                    columns = query_split[2].split('=')
+                    result = relation1.full_outer_join(relation2, columns[0], columns[1])
+                else:
+                    result = relation1.full_outer_join(relation2)
             elif '∪' in query:
                 result = relation1.union(relation2)
             elif '∩' in query:
