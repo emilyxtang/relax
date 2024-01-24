@@ -3,7 +3,7 @@ from relation import Relation
 
 INPUT_FILE_NAME = 'input.txt'
 
-OPERATORS = ['σ', 'π', '⨝', '∪', '∩', '-']
+OPERATORS = ['σ', 'π', '⨝', '⟕', '⟖', '⟗', '∪', '∩', '-']
 RELATIONS_TITLE = 'RELATION(S)'
 QUERY_TITLE = 'QUERY'
 RESULT_TITLE = 'RESULT'
