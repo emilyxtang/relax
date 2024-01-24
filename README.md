@@ -16,7 +16,7 @@ The program will output the inputted relations and query from `input.txt`, and t
 
 | Operator | Examples |
 | -------- | -------- |
-| `σ` selection | `σ name=='Bob' Employee` `σ id >=3 Employee` <br> NOTE: the `==` to check for equivalence |
+| `σ` selection | `σ name=='Bob' Employee` `σ id>=3 Employee` <br> NOTE: the `==` to check for equivalence |
 | `π` projection | `π name Employee` `π id,name Employee` |
 | `⨝` inner join | `Employee ⨝ Department` `Student ⨝ id=sid Takes` |
 | `⟕` left outer join | `Employee ⟕ Department` `Student ⟕ id=sid Takes` |
