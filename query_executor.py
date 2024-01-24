@@ -12,7 +12,7 @@ def _get_matching_close_bracket(query : str, index_open_bracket : int) -> int:
 
 class QueryExecutor:
 
-    def __init__(self, query, relations):
+    def __init__(self, query : str, relations : list[Relation]):
         self._query = query
         self._relations = relations
         self._num_inter_relations = 0

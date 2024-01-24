@@ -94,7 +94,7 @@ def print_query() -> None:
     print()
     print(query)
 
-def print_execute_query() -> None:
+def print_result() -> None:
     print_title(RESULT_TITLE)
     print(QueryExecutor(query, relations).get_result())
     print()
@@ -104,7 +104,7 @@ if __name__ == '__main__':
         read_input_file()
         print_relations()
         print_query()
-        print_execute_query()
+        print_result()
     except Exception as ex:
         print(ex)
         print()
