@@ -28,10 +28,6 @@ The program will output the inputted relations and query from `input.txt`, and t
 
 ### Example Query
 
-NOTE: Use the fewest brackets necessary to write your query.
-
-For example, if you wanted to do a projection of column 'id' your query should look like: `π id relation_name`. It SHOULD NOT look like `(π id relation_name)` or `π id (relation_name)`.
-
 ```
 student = {
 id, name, email, city
@@ -87,3 +83,7 @@ RESULT -------------------------------------------------------------------------
 │ makaela │
 └─────────┘
 ```
+
+NOTE: Use the fewest brackets necessary to write your query.
+
+For example, if you wanted to do a projection of column 'id' your query should look like: `π id relation_name`. It SHOULD NOT look like `(π id relation_name)` or `π id (relation_name)`.
