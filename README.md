@@ -6,7 +6,7 @@ A simple text-based relational algebra calculator.
 
 Clone the repository and install the required packages using: `pip install -r requirements.txt`.
 
-Enter your query into `input.txt`. Ensure proper formatting is followed ([example query below](#example-query)).
+Enter your query into `input.txt`. Ensure proper formatting is followed ([example query below](#example-query)). Examples of input.txt files can be found [here](https://github.com/emilyxtang/relax/tree/main/examples).
 
 Run `main.py` using `python3 main.py`.
 
